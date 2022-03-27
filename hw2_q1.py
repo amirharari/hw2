@@ -22,18 +22,14 @@ def english_to_morse(
     input_file: str = "lorem.txt",
     output_file: str = "lorem_morse.txt"
 ):
-    """Convert an input text file to an output Morse code file.
 
-    Notes
-    -----
-    This function assumes the existence of a MORSE_CODE dictionary, containing a
-    mapping between English letters and their corresponding Morse code.
+    with open(input_file, 'r') as file:
+        file_string = file.read()
+    mytable = str.maketrans(MORSE_CODE)
+    mors_encoded_words = file_string.split()
+    with open(output_file, 'w') as file:
+        for word in mors_encoded_words:
+            file.write(" ".join(word).translate(mytable) + '\n')
 
-    Parameters
-    ----------
-    input_file : str
-        Path to file containing the text file to convert.
-    output_file : str
-        Name of output file containing the translated Morse code. Please don't change
-        it since it's also hard-coded in the tests file.
-    """
+
+english_to_morse()
